@@ -15,10 +15,17 @@ public class MainController {
 	private NegoRepository negoRepository;
 
 	@Autowired
-	private HoraRepository horaRepository;
+	private NegoService negoService;
 
 	@Autowired
-	private NegoService negoService;
+	private ProduRepository produRepository;
+
+	@Autowired
+	private ProduService produService;
+
+	@Autowired
+	private HoraRepository horaRepository;
+
 
 	@PostMapping(path="/add") // Map ONLY POST Requests
 	public @ResponseBody String addNewUser (@RequestParam String name
@@ -42,7 +49,16 @@ public class MainController {
 		//return negocio.get();
 		return negoRepository.findById(id);
 	}
-
+	@GetMapping(path="/prod")
+	public @ResponseBody Iterable<Producto> getProds() {
+		return produRepository.findAll();
+	}
+	@GetMapping("/prods/{id}")
+	public @ResponseBody Optional<Producto> findProd(@PathVariable Integer id) {
+		//Optional<Negocio> negocio =  negoRepository.findById(id);
+		//return negocio.get();
+		return produRepository.findById(id);
+	}
 	@GetMapping(path="/horas")
 	public @ResponseBody Iterable<Horario> getHoras() {
 		return horaRepository.findAll();
