@@ -1,22 +1,30 @@
 package com.example.accessingdatamysql;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "producto")
 public class Producto {
-    @javax.persistence.Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    protected Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer id;
     protected Integer idNegocio;
     protected String nombre;
     protected String precio;
     protected String imagen;
     protected String descripcion;
     protected String archivo;
+    @OneToOne
+    private Negocio negocio;
+
+    public Negocio getNegocio() {
+        return negocio;
+    }
+
+    public void setNegocio(Negocio negocio) {
+        this.negocio = negocio;
+    }
 
     public Integer getId() {
         return id;

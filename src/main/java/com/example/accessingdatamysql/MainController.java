@@ -49,15 +49,22 @@ public class MainController {
 		//return negocio.get();
 		return negoRepository.findById(id);
 	}
-	@GetMapping(path="/prod")
+	@GetMapping(path="/produ")
 	public @ResponseBody Iterable<Producto> getProds() {
 		return produRepository.findAll();
 	}
-	@GetMapping("/prods/{id}")
+	@GetMapping("/prod/{id}")
 	public @ResponseBody Optional<Producto> findProd(@PathVariable Integer id) {
 		//Optional<Negocio> negocio =  negoRepository.findById(id);
 		//return negocio.get();
 		return produRepository.findById(id);
+	}
+	@GetMapping("/prods/{id}")
+	public @ResponseBody Producto findProdNego(@PathVariable Integer id) {
+		//Optional<Negocio> negocio =  negoRepository.findById(id);
+		//return negocio.get();
+		;
+		return negoRepository.findById(id).get().getProducto();
 	}
 	@GetMapping(path="/horas")
 	public @ResponseBody Iterable<Horario> getHoras() {

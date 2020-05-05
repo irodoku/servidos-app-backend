@@ -1,9 +1,6 @@
 package com.example.accessingdatamysql;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "negocio")
@@ -11,6 +8,11 @@ public class Negocio {
     @javax.persistence.Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     protected Integer id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_producto", referencedColumnName = "id")
+    private Producto producto;
+
     protected String nombre;
     protected String sector;
     protected String descripcion;
@@ -47,6 +49,14 @@ public class Negocio {
         this.lng = lng;
         this.activo = activo;
         this.estrellas = estrellas;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public String getArchivo() {
