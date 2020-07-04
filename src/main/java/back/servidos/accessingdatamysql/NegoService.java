@@ -1,4 +1,4 @@
-package com.example.accessingdatamysql;
+package back.servidos.accessingdatamysql;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

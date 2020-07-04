@@ -1,4 +1,4 @@
-package com.example.accessingdatamysql;
+package back.servidos.accessingdatamysql;
 
 import javax.persistence.*;
 
