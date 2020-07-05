@@ -7,26 +7,26 @@ import javax.persistence.*;
 public class Negocio {
     @javax.persistence.Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    protected Integer id;
+    private Integer id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_producto", referencedColumnName = "id")
     private Producto producto;
 
-    protected String nombre;
-    protected String sector;
-    protected String descripcion;
-    protected String telefono;
-    protected String icono;
-    protected String imagen;
-    protected String archivo;
-    protected Short precio;
+    private String nombre;
+    private String sector;
+    private String descripcion;
+    private String telefono;
+    private String icono;
+    private String imagen;
+    private String archivo;
+    private Short precio;
     private String tipo;
     private Double lat;
     private Double lng;
     private Boolean domicilio;
     private String estrellas;
-    protected short activo; //0=null, 1=Placeholder, 2=activo+gratis, 3=activo+premium
+    private short activo; //0=null, 1=Placeholder, 2=activo+gratis, 3=activo+premium
 
     public Negocio() {
     }

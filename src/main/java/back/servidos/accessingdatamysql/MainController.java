@@ -26,13 +26,15 @@ public class MainController {
 	@Autowired
 	private HoraRepository horaRepository;
 
+	@Autowired
+	private RestRepository restRepository;
+
+	@Autowired
+	private RestService restService;
 
 	@PostMapping(path="/add") // Map ONLY POST Requests
 	public @ResponseBody String addNewUser (@RequestParam String name
 			, @RequestParam String email) {
-		// @ResponseBody means the returned String is the response, not a view name
-		// @RequestParam means it is a parameter from the GET or POST request
-
 		Horario n = new Horario();
 		horaRepository.save(n);
 
@@ -43,10 +45,12 @@ public class MainController {
 	public @ResponseBody Iterable<Negocio> getNegos() {
 		return negoRepository.findAll();
 	}
+	@GetMapping(path="/rests")
+	public @ResponseBody Iterable<Restaurante> getRest() {
+		return restRepository.findAll();
+	}
 	@GetMapping("/negos/{id}")
 	public @ResponseBody Optional<Negocio> findNego(@PathVariable Integer id) {
-		//Optional<Negocio> negocio =  negoRepository.findById(id);
-		//return negocio.get();
 		return negoRepository.findById(id);
 	}
 	@GetMapping(path="/produ")
@@ -55,22 +59,15 @@ public class MainController {
 	}
 	@GetMapping("/prod/{id}")
 	public @ResponseBody Optional<Producto> findProd(@PathVariable Integer id) {
-		//Optional<Negocio> negocio =  negoRepository.findById(id);
-		//return negocio.get();
 		return produRepository.findById(id);
 	}
 	@GetMapping("/prods/{id}")
 	public @ResponseBody Producto findProdNego(@PathVariable Integer id) {
-		//Optional<Negocio> negocio =  negoRepository.findById(id);
-		//return negocio.get();
-		;
 		return negoRepository.findById(id).get().getProducto();
 	}
 	@GetMapping(path="/horas")
 	public @ResponseBody Iterable<Horario> getHoras() {
 		return horaRepository.findAll();
 	}
-
-
 
 }
